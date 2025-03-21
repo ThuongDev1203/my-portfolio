@@ -175,8 +175,8 @@ const LandingPage = () => {
               whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
               transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
             >
-              <h1>{content.about.title}</h1>
-              <h3>{content.about.subtitle}</h3>
+              <h1 style={{ fontSize: "2.5rem" }}>{content.about.title}</h1>
+              <h3 style={{ fontSize: "1.5rem" }}>{content.about.subtitle}</h3>
             </motion.div>
           </div>
           <h2>
