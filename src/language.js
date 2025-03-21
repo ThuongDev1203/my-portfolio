@@ -70,7 +70,7 @@ const languageData = {
     about: {
       title: "Xin chào, tôi là Nguyễn Cao Thượng",
       subtitle: "Thực tập sinh Unity",
-      section: "Giới thiệu",
+      section: "Về tôi",
       description:
         "Tôi là sinh viên năm cuối chuyên ngành Khoa học Máy tính tại Đại học Văn Hiến, đam mê lập trình game. Tôi có kỹ năng tốt về C# và đã tham gia nhiều dự án game. Trong số đó, tôi đã giành được 3 giải thưởng như: Giải Vàng và giải Nhì trong lập trình game, giải Khuyến khích về thuật toán. Tôi luôn nỗ lực học hỏi và phát triển bản thân.",
     },

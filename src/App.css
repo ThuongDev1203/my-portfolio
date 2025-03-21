@@ -99,7 +99,6 @@
   padding: 1.5rem;
   background: #e67e22;
   border-bottom: 4px solid #1a3c34;
-  text-align: center;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -133,8 +132,8 @@
   box-shadow: 2px 2px 0px #1a3c34;
   padding: 0.2rem;
   cursor: pointer;
-  width: 24px; /* Kích thước vuông nhỏ */
-  height: 24px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,6 +142,7 @@
 
 .desktop-lang {
   display: block; /* Hiện trên desktop */
+  margin-left: 1rem; /* Khoảng cách với menu */
 }
 
 .mobile-lang {
@@ -150,7 +150,7 @@
 }
 
 .mobile-lang .lang-toggle {
-  width: 100%; /* Trên mobile, nút rộng bằng mục menu */
+  width: 100%;
   height: auto;
   background: #a9dfbf;
   color: #1a3c34;
@@ -161,6 +161,12 @@
 }
 
 /* Navigation Menu */
+.nav-menu {
+  flex-grow: 1; /* Cho phép menu chiếm không gian giữa */
+  display: flex;
+  justify-content: center; /* Căn giữa menu */
+}
+
 .nav-menu ul {
   display: flex;
   justify-content: center;

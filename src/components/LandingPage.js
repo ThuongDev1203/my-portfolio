@@ -6,7 +6,7 @@ import "../App.css";
 
 const LandingPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [lang, setLang] = useState("en"); // Mặc định là tiếng Anh
+  const [lang, setLang] = useState("en");
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleLanguage = () => setLang(lang === "en" ? "vi" : "en");
@@ -39,16 +39,8 @@ const LandingPage = () => {
         <button className="menu-toggle" onClick={toggleMenu}>
           ☰
         </button>
-        {/* Nút chuyển ngôn ngữ trên desktop */}
-        <button className="lang-toggle desktop-lang" onClick={toggleLanguage}>
-          {lang === "en" ? "VN" : "EN"}
-        </button>
         <nav className={`nav-menu ${isMenuOpen ? "open" : ""}`}>
-          <motion.ul
-            initial={{ x: "-100%" }}
-            animate={{ x: isMenuOpen ? 0 : "-100%" }}
-            transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
-          >
+          <motion.ul>
             <motion.li
               whileHover={{ scale: 1.1, rotate: 5 }}
               initial={{ opacity: 0 }}
@@ -151,9 +143,13 @@ const LandingPage = () => {
             </motion.li>
           </motion.ul>
         </nav>
+        {/* Nút chuyển ngôn ngữ trên desktop */}
+        <button className="lang-toggle desktop-lang" onClick={toggleLanguage}>
+          {lang === "en" ? "VN" : "EN"}
+        </button>
       </motion.header>
 
-      {/* About Section */}
+      {/* ... (Các section khác giữ nguyên) */}
       <section id="about" className="section about">
         <motion.div
           className="content-box"
