@@ -1,15 +1,27 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link as ScrollLink } from "react-scroll";
+import languageData from "../language";
 import "../App.css";
 
 const LandingPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [lang, setLang] = useState("en"); // Mặc định là tiếng Anh
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleLanguage = () => setLang(lang === "en" ? "vi" : "en");
+
+  const content = languageData[lang];
 
   return (
     <div className="landing-page">
+      {/* Hiệu ứng lá rơi */}
+      <div className="leaf-fall">
+        {[...Array(10)].map((_, i) => (
+          <div key={i} className={`leaf leaf-${i}`} />
+        ))}
+      </div>
+
       {/* Header */}
       <motion.header
         className="header"
@@ -22,10 +34,14 @@ const LandingPage = () => {
           animate={{ scale: 1 }}
           transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}
         >
-          THUONG DEV
+          {content.header}
         </motion.h1>
         <button className="menu-toggle" onClick={toggleMenu}>
           ☰
+        </button>
+        {/* Nút chuyển ngôn ngữ trên desktop */}
+        <button className="lang-toggle desktop-lang" onClick={toggleLanguage}>
+          {lang === "en" ? "VN" : "EN"}
         </button>
         <nav className={`nav-menu ${isMenuOpen ? "open" : ""}`}>
           <motion.ul
@@ -45,12 +61,14 @@ const LandingPage = () => {
                 duration={500}
                 onClick={toggleMenu}
               >
-                <img
+                <motion.img
                   src="/images/information.png"
                   alt="star"
                   className="menu-icon"
-                />{" "}
-                About
+                  whileHover={{ rotate: 360, scale: 1.2 }}
+                  transition={{ duration: 0.5 }}
+                />
+                {content.menu.about}
               </ScrollLink>
             </motion.li>
             <motion.li
@@ -65,12 +83,14 @@ const LandingPage = () => {
                 duration={500}
                 onClick={toggleMenu}
               >
-                <img
+                <motion.img
                   src="/images/achievement.png"
                   alt="sword"
                   className="menu-icon"
-                />{" "}
-                Achievements
+                  whileHover={{ rotate: 360, scale: 1.2 }}
+                  transition={{ duration: 0.5 }}
+                />
+                {content.menu.achievements}
               </ScrollLink>
             </motion.li>
             <motion.li
@@ -85,12 +105,14 @@ const LandingPage = () => {
                 duration={500}
                 onClick={toggleMenu}
               >
-                <img
+                <motion.img
                   src="/images/drawer.png"
                   alt="ship"
                   className="menu-icon"
-                />{" "}
-                Projects
+                  whileHover={{ rotate: 360, scale: 1.2 }}
+                  transition={{ duration: 0.5 }}
+                />
+                {content.menu.projects}
               </ScrollLink>
             </motion.li>
             <motion.li
@@ -105,13 +127,27 @@ const LandingPage = () => {
                 duration={500}
                 onClick={toggleMenu}
               >
-                <img
+                <motion.img
                   src="/images/contacts.png"
                   alt="mail"
                   className="menu-icon"
-                />{" "}
-                Contact
+                  whileHover={{ rotate: 360, scale: 1.2 }}
+                  transition={{ duration: 0.5 }}
+                />
+                {content.menu.contact}
               </ScrollLink>
+            </motion.li>
+            {/* Nút chuyển ngôn ngữ trên mobile */}
+            <motion.li
+              className="mobile-lang"
+              whileHover={{ scale: 1.1 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              <button className="lang-toggle" onClick={toggleLanguage}>
+                {lang === "en" ? "VN" : "EN"}
+              </button>
             </motion.li>
           </motion.ul>
         </nav>
@@ -129,7 +165,7 @@ const LandingPage = () => {
         >
           <div className="about-header">
             <motion.img
-              src="/images/avt.jpg" // Ảnh 1926x2568px
+              src="/images/avt.jpg"
               alt="Thuong Cao Nguyen"
               className="profile-image"
               initial={{ x: -100, opacity: 0 }}
@@ -143,8 +179,8 @@ const LandingPage = () => {
               whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
               transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
             >
-              <h1 style={{ fontSize: "2.5rem" }}>Hi, I'm Thuong Cao Nguyen</h1>
-              <h3 style={{ fontSize: "1.5rem" }}>Unity Intern</h3>
+              <h1>{content.about.title}</h1>
+              <h3>{content.about.subtitle}</h3>
             </motion.div>
           </div>
           <h2>
@@ -153,22 +189,9 @@ const LandingPage = () => {
               alt="star"
               className="section-icon"
             />{" "}
-            About Me
+            {content.about.section}
           </h2>
-          <p
-            style={{
-              textAlign: "justify",
-              fontSize: "1.1rem",
-              lineHeight: 1.5,
-            }}
-          >
-            I’m a senior student majoring in Computer Science at Van Hien
-            University, passionate about game programming. I have good skills in
-            C# and have participated in many game projects. Among them, I have
-            won 3 awards such as: Gold prize and second prize in game
-            programming, encouragement prize in algorithms. I always strive to
-            learn and develop myself.
-          </p>
+          <p>{content.about.description}</p>
         </motion.div>
       </section>
 
@@ -187,105 +210,40 @@ const LandingPage = () => {
               alt="sword"
               className="section-icon"
             />{" "}
-            Achievements
+            {content.achievements.section}
           </h2>
           <div className="grid-content">
-            <motion.div
-              className="grid-item"
-              initial={{ scale: 0.8, opacity: 0, rotate: -15 }}
-              whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              whileHover={{
-                y: -10,
-                rotate: 5,
-                boxShadow: "8px 8px 0px #1a3c34",
-              }}
-              animate={{
-                y: [0, -5, 0],
-                transition: { repeat: Infinity, duration: 1.5 },
-              }}
-            >
-              <img
-                src="/images/dt1.jpg"
-                alt="Academic Competition Season 1"
-                className="grid-image"
-              />
-              <strong>🎮 Academic Competition Season 1</strong>
-              <p>Van Hien University</p>
-              <p>Award: Consolation Prize</p>
-            </motion.div>
-            <motion.div
-              className="grid-item"
-              initial={{ scale: 0.8, opacity: 0, rotate: 15 }}
-              whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              whileHover={{
-                y: -10,
-                rotate: -5,
-                boxShadow: "8px 8px 0px #1a3c34",
-              }}
-              animate={{
-                y: [0, -5, 0],
-                transition: { repeat: Infinity, duration: 1.5, delay: 0.3 },
-              }}
-            >
-              <img
-                src="/images/dt2.jpg"
-                alt="Van Hien University"
-                className="grid-image"
-              />
-              <strong>🎮 Academic Competitions Season 2</strong>
-              <p>My game went viral.</p>
-              <p>Award: Second Prize</p>
-            </motion.div>
-            <motion.div
-              className="grid-item"
-              initial={{ scale: 0.8, opacity: 0, rotate: 15 }}
-              whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              whileHover={{
-                y: -10,
-                rotate: -5,
-                boxShadow: "8px 8px 0px #1a3c34",
-              }}
-              animate={{
-                y: [0, -5, 0],
-                transition: { repeat: Infinity, duration: 1.5, delay: 0.3 },
-              }}
-            >
-              <img
-                src="/images/dt3.jpg"
-                alt="Van Hien University"
-                className="grid-image"
-              />
-              <strong>🎮 Academic Competitions Season 3</strong>
-              <p>Van Hien University</p>
-              <p>Award: Gold Prize</p>
-            </motion.div>
-            <motion.div
-              className="grid-item"
-              initial={{ scale: 0.8, opacity: 0, rotate: 15 }}
-              whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              whileHover={{
-                y: -10,
-                rotate: -5,
-                boxShadow: "8px 8px 0px #1a3c34",
-              }}
-              animate={{
-                y: [0, -5, 0],
-                transition: { repeat: Infinity, duration: 1.5, delay: 0.3 },
-              }}
-            >
-              <img
-                src="/images/dt4.jpg"
-                alt="Van Hien University"
-                className="grid-image"
-              />
-              <strong>🎮 Game Idea & Program Contest</strong>
-              <p>Korea cultural center</p>
-              <p>Award: Consolation Prize</p>
-            </motion.div>
+            {content.achievements.items.map((item, index) => (
+              <motion.div
+                key={index}
+                className="grid-item"
+                initial={{ scale: 0.8, opacity: 0, rotate: -15 }}
+                whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 + index * 0.2 }}
+                whileHover={{
+                  y: -10,
+                  rotate: 5,
+                  boxShadow: "8px 8px 0px #1a3c34",
+                }}
+                animate={{
+                  y: [0, -5, 0],
+                  transition: {
+                    repeat: Infinity,
+                    duration: 1.5,
+                    delay: index * 0.3,
+                  },
+                }}
+              >
+                <img
+                  src={`/images/dt${index + 1}.jpg`}
+                  alt={item.title}
+                  className="grid-image"
+                />
+                <strong>🎮 {item.title}</strong>
+                <p>{item.location}</p>
+                <p>{item.award}</p>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </section>
@@ -301,69 +259,51 @@ const LandingPage = () => {
         >
           <h2>
             <img src="/images/drawer.png" alt="ship" className="section-icon" />{" "}
-            Projects
+            {content.projects.section}
           </h2>
           <div className="grid-content">
-            <motion.div
-              className="grid-item"
-              initial={{ scale: 0.8, opacity: 0, x: -50 }}
-              whileInView={{ scale: 1, opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              whileHover={{
-                y: -10,
-                rotate: 5,
-                boxShadow: "8px 8px 0px #1a3c34",
-              }}
-              animate={{
-                rotate: [0, 2, -2, 0],
-                transition: { repeat: Infinity, duration: 2 },
-              }}
-            >
-              <img
-                src="/images/game_1.jpg"
-                alt="Pig Adventure"
-                className="grid-image"
-              />
-              <strong>🌠 Pig Adventure</strong>
-              <p>The pig is cheerful, enthusiastic and active.</p>
-              <motion.button
-                href="https://thuonggamedev.itch.io/pigadventure"
-                whileHover={{ scale: 1.1, rotate: 10 }}
-                whileTap={{ scale: 0.9 }}
+            {content.projects.items.map((item, index) => (
+              <motion.div
+                key={index}
+                className="grid-item"
+                initial={{ scale: 0.8, opacity: 0, x: index === 0 ? -50 : 50 }}
+                whileInView={{ scale: 1, opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 + index * 0.2 }}
+                whileHover={{
+                  y: -10,
+                  rotate: index === 0 ? 5 : -5,
+                  boxShadow: "8px 8px 0px #1a3c34",
+                }}
+                animate={{
+                  rotate: [0, index === 0 ? 2 : -2, index === 0 ? -2 : 2, 0],
+                  transition: {
+                    repeat: Infinity,
+                    duration: 2,
+                    delay: index * 0.5,
+                  },
+                }}
               >
-                Play
-              </motion.button>
-            </motion.div>
-            <motion.div
-              className="grid-item"
-              initial={{ scale: 0.8, opacity: 0, x: 50 }}
-              whileInView={{ scale: 1, opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              whileHover={{
-                y: -10,
-                rotate: -5,
-                boxShadow: "8px 8px 0px #1a3c34",
-              }}
-              animate={{
-                rotate: [0, -2, 2, 0],
-                transition: { repeat: Infinity, duration: 2, delay: 0.5 },
-              }}
-            >
-              <img
-                src="/images/game_2.jpg"
-                alt="Undead Sirvivor"
-                className="grid-image"
-              />
-              <strong>⚔️ Undead Sirvivor</strong>
-              <p>Fight evil zombies and have a variety of skills.</p>
-              <motion.button
-                href="https://thuonggamedev.itch.io/undead-sirvivor"
-                whileHover={{ scale: 1.1, rotate: -10 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                Play
-              </motion.button>
-            </motion.div>
+                <img
+                  src={`/images/game_${index + 1}.jpg`}
+                  alt={item.title}
+                  className="grid-image"
+                />
+                <strong>
+                  {index === 0 ? "🌠" : "⚔️"} {item.title}
+                </strong>
+                <p>{item.description}</p>
+                <motion.a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="play-button"
+                  whileHover={{ scale: 1.1, rotate: index === 0 ? 10 : -10 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  Play
+                </motion.a>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </section>
@@ -384,7 +324,7 @@ const LandingPage = () => {
               alt="contacts"
               className="section-icon"
             />{" "}
-            Contact
+            {content.contact.section}
           </h2>
           <div className="social-links">
             <motion.a
@@ -451,7 +391,7 @@ const LandingPage = () => {
 
       {/* Footer */}
       <footer>
-        <p>© 2024 ThuongDev | All rights reserved</p>
+        <p>{content.footer}</p>
       </footer>
     </div>
   );
