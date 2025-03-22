@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Link as ScrollLink } from "react-scroll";
 import languageData from "../language";
@@ -7,11 +7,47 @@ import "../App.css";
 const LandingPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [lang, setLang] = useState("en");
+  const menuRef = useRef(null); // Ref để kiểm tra click/chạm ngoài menu
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleLanguage = () => setLang(lang === "en" ? "vi" : "en");
 
   const content = languageData[lang];
+
+  // Xử lý click/chạm ngoài menu để ẩn trên mobile
+  useEffect(() => {
+    const handleOutsideInteraction = (event) => {
+      if (
+        isMenuOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideInteraction);
+    document.addEventListener("touchstart", handleOutsideInteraction);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideInteraction);
+      document.removeEventListener("touchstart", handleOutsideInteraction);
+    };
+  }, [isMenuOpen]);
+
+  // Animation variants cho menu mobile
+  const menuVariants = {
+    hidden: { x: "-100%", opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: { duration: 0.3, ease: "easeInOut" },
+    },
+    exit: {
+      x: "-100%",
+      opacity: 0,
+      transition: { duration: 0.3, ease: "easeInOut" },
+    },
+  };
 
   return (
     <div className="landing-page">
@@ -36,11 +72,22 @@ const LandingPage = () => {
         >
           {content.header}
         </motion.h1>
-        <button className="menu-toggle" onClick={toggleMenu}>
-          ☰
-        </button>
-        <nav className={`nav-menu ${isMenuOpen ? "open" : ""}`}>
-          <motion.ul>
+        <motion.button
+          className="menu-toggle"
+          onClick={toggleMenu}
+          whileTap={{ scale: 0.9 }}
+        >
+          {isMenuOpen ? "✖" : "☰"} {/* Chuyển icon */}
+        </motion.button>
+        <nav ref={menuRef} className={`nav-menu ${isMenuOpen ? "open" : ""}`}>
+          <motion.ul
+            variants={window.innerWidth <= 768 ? menuVariants : undefined}
+            initial={window.innerWidth <= 768 ? "hidden" : false}
+            animate={
+              window.innerWidth <= 768 && isMenuOpen ? "visible" : "hidden"
+            }
+            exit={window.innerWidth <= 768 ? "exit" : undefined}
+          >
             <motion.li
               whileHover={{ scale: 1.1, rotate: 5 }}
               initial={{ opacity: 0 }}
@@ -129,7 +176,6 @@ const LandingPage = () => {
                 {content.menu.contact}
               </ScrollLink>
             </motion.li>
-            {/* Nút chuyển ngôn ngữ trên mobile */}
             <motion.li
               className="mobile-lang"
               whileHover={{ scale: 1.1 }}
@@ -143,13 +189,12 @@ const LandingPage = () => {
             </motion.li>
           </motion.ul>
         </nav>
-        {/* Nút chuyển ngôn ngữ trên desktop */}
         <button className="lang-toggle desktop-lang" onClick={toggleLanguage}>
           {lang === "en" ? "VN" : "EN"}
         </button>
       </motion.header>
 
-      {/* ... (Các section khác giữ nguyên) */}
+      {/* Các section */}
       <section id="about" className="section about">
         <motion.div
           className="content-box"
@@ -175,7 +220,7 @@ const LandingPage = () => {
               whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
               transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
             >
-              <h1 style={{ fontSize: "2.5rem" }}>{content.about.title}</h1>
+              <h1 style={{ fontSize: "2.2rem" }}>{content.about.title}</h1>
               <h3 style={{ fontSize: "1.5rem" }}>{content.about.subtitle}</h3>
             </motion.div>
           </div>
@@ -187,11 +232,12 @@ const LandingPage = () => {
             />{" "}
             {content.about.section}
           </h2>
-          <p>{content.about.description}</p>
+          <p style={{ lineHeight: "1.5", textAlign: "justify" }}>
+            {content.about.description}
+          </p>
         </motion.div>
       </section>
 
-      {/* Achievements Section */}
       <section id="achievements" className="section achievements">
         <motion.div
           className="content-box"
@@ -232,7 +278,7 @@ const LandingPage = () => {
               >
                 <img
                   src={`/images/dt${index + 1}.jpg`}
-                  alt={item.title}
+                  alt="item.title"
                   className="grid-image"
                 />
                 <strong>🎮 {item.title}</strong>
@@ -244,7 +290,6 @@ const LandingPage = () => {
         </motion.div>
       </section>
 
-      {/* Projects Section */}
       <section id="projects" className="section projects">
         <motion.div
           className="content-box"
@@ -281,7 +326,7 @@ const LandingPage = () => {
               >
                 <img
                   src={`/images/game_${index + 1}.jpg`}
-                  alt={item.title}
+                  alt="item.title"
                   className="grid-image"
                 />
                 <strong>
@@ -304,7 +349,6 @@ const LandingPage = () => {
         </motion.div>
       </section>
 
-      {/* Contact Section */}
       <section id="contact" className="section contact">
         <motion.div
           className="content-box"
@@ -386,8 +430,8 @@ const LandingPage = () => {
       </section>
 
       {/* Footer */}
-      <footer>
-        <p>{content.footer}</p>
+      <footer style={{ background: "#1a3c34" }}>
+        <p style={{ color: "white" }}>{content.footer}</p>
       </footer>
     </div>
   );

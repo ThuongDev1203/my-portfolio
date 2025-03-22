@@ -1,10 +1,10 @@
 .App {
-  font-family: "Press Start 2P", "Arial", sans-serif;
+  font-family: "Be Vietnam Pro", "Arial", sans-serif;
   background: linear-gradient(to bottom, #f9e79f, #a9dfbf);
   color: #1a3c34;
   min-height: 100vh;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden; /* Chỉ ẩn tràn ngang */
 }
 
 /* Leaf Fall Effect */
@@ -96,19 +96,26 @@
 
 /* Header */
 .header {
-  padding: 1.5rem;
+  padding: 1rem 1.5rem;
   background: #e67e22;
   border-bottom: 4px solid #1a3c34;
-  position: sticky;
+  position: fixed;
   top: 0;
+  width: 100%;
   z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
+}
+
+/* Đảm bảo nội dung không bị che bởi header cố định */
+.landing-page {
+  padding-top: 50px; /* Khoảng cách để nội dung không bị che */
 }
 
 .header h1 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   color: #fff;
   text-shadow: 3px 3px 0px #1a3c34;
   margin: 0;
@@ -156,7 +163,6 @@
   color: #1a3c34;
   border: 3px solid #1a3c34;
   box-shadow: 3px 3px 0px #1a3c34;
-  padding: 0.5rem;
   text-align: center;
 }
 
@@ -388,14 +394,11 @@ footer p {
     background: #e67e22;
     z-index: 20;
     padding-top: 4rem;
-  }
-
-  .nav-menu:not(.open) {
-    display: none;
+    display: none; /* Ẩn mặc định trên mobile */
   }
 
   .nav-menu.open {
-    display: block;
+    display: block; /* Hiện khi mở */
   }
 
   .nav-menu ul {
