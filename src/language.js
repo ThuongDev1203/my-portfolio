@@ -24,7 +24,7 @@ const languageData = {
         },
         {
           title: "Academic Competitions Season 2",
-          location: "My game went viral.",
+          location: "Van Hien University",
           award: "Award: Second Prize",
         },
         {
@@ -36,6 +36,11 @@ const languageData = {
           title: "Game Idea & Program Contest",
           location: "Korea cultural center",
           award: "Award: Consolation Prize",
+        },
+        {
+          title: "Hakathon MAMMOTHON - Celestia Viet Nam",
+          location: "Gia Dinh University",
+          award: "Award: Incubation solution",
         },
       ],
     },
@@ -84,7 +89,7 @@ const languageData = {
         },
         {
           title: "Cuộc thi Học thuật Mùa 2",
-          location: "Game của tôi đã lan tỏa mạnh mẽ.",
+          location: "Đại học Văn Hiến",
           award: "Giải: Nhì",
         },
         {
@@ -96,6 +101,11 @@ const languageData = {
           title: "Cuộc thi Ý tưởng & Lập trình Game",
           location: "Trung tâm Văn hóa Hàn Quốc",
           award: "Giải: Khuyến khích",
+        },
+        {
+          title: "Hackathon MAMMOTHON - Celestia Việt Nam",
+          location: "Đại học Gia Định",
+          award: "Giải: Ươm mầm",
         },
       ],
     },
