@@ -9,7 +9,7 @@ const languageData = {
     },
     about: {
       title: "Hi, I'm Thuong Cao Nguyen",
-      subtitle: "Unity Intern",
+      subtitle: "Game Development Intern",
       section: "About Me",
       description:
         "I'm a senior Computer Science student at Van Hien University with a passion for game programming. I have strong skills in C# and have participated in multiple game projects. Among them, I have won five awards, including a Gold Prize, a Second Prize, and an Encouragement Prize in game programming, an Encouragement Prize in algorithms, and a Blockchain Incubation Award. I am always striving to learn and develop myself.",
@@ -74,7 +74,7 @@ const languageData = {
     },
     about: {
       title: "Xin chào, tôi là Nguyễn Cao Thượng",
-      subtitle: "Thực tập sinh Unity",
+      subtitle: "Thực tập sinh Lập trình Game",
       section: "Về tôi",
       description:
         "Tôi là sinh viên năm cuối chuyên ngành Khoa học máy tính tại trường Đại học Văn Hiến, đam mê lập trình game. Tôi có kỹ năng tốt về C# và đã tham gia nhiều dự án game. Trong số đó, tôi đã giành được 5 giải thưởng như: Giải vàng, giải nhì và giải khuyến khích về lập trình game, giải khuyến khích về thuật toán, giải ươm mầm về blockchain. Tôi luôn nỗ lực học hỏi và phát triển bản thân.",

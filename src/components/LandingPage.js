@@ -177,6 +177,28 @@ const LandingPage = () => {
               </ScrollLink>
             </motion.li>
             <motion.li
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              <a
+                href="/Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={toggleMenu}
+              >
+                <motion.img
+                  src="/images/cv.png"
+                  alt="resume"
+                  className="menu-icon"
+                  whileHover={{ rotate: 360, scale: 1.2 }}
+                  transition={{ duration: 0.5 }}
+                />
+                {lang === "en" ? "Resume" : "Sơ yếu lý lịch"}
+              </a>
+            </motion.li>
+            <motion.li
               className="mobile-lang"
               whileHover={{ scale: 1.1 }}
               initial={{ opacity: 0 }}
