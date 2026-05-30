@@ -11,6 +11,67 @@ const LandingPage = () => {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleLanguage = () => setLang(lang === "en" ? "vi" : "en");
+  const [expandedExperience, setExpandedExperience] = useState({});
+
+  const toggleExperienceDetails = (index) => {
+    setExpandedExperience((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
+
+  const renderExperienceDescription = (item, index) => {
+    const isExpanded = expandedExperience[index];
+
+    if (Array.isArray(item.description)) {
+      const visibleLines = isExpanded
+        ? item.description
+        : item.description.slice(0, 2);
+      return (
+        <>
+          <ul className="item-description-list">
+            {visibleLines.map((line, idx) => (
+              <li key={idx}>{line}</li>
+            ))}
+          </ul>
+          {item.description.length > 2 && (
+            <button
+              className="toggle-details"
+              onClick={() => toggleExperienceDetails(index)}
+            >
+              {isExpanded
+                ? content.experience.hideDetails
+                : content.experience.readMore}
+            </button>
+          )}
+        </>
+      );
+    }
+
+    const longText =
+      typeof item.description === "string" ? item.description : "";
+    const previewText =
+      longText.length > 120 ? `${longText.slice(0, 120).trim()}...` : longText;
+    const needsToggle = longText.length > 120;
+
+    return (
+      <>
+        <p className="item-description">
+          {isExpanded || !needsToggle ? longText : previewText}
+        </p>
+        {needsToggle && (
+          <button
+            className="toggle-details"
+            onClick={() => toggleExperienceDetails(index)}
+          >
+            {isExpanded
+              ? content.experience.hideDetails
+              : content.experience.readMore}
+          </button>
+        )}
+      </>
+    );
+  };
 
   const content = languageData[lang];
 
@@ -117,6 +178,28 @@ const LandingPage = () => {
               transition={{ delay: 0.2 }}
             >
               <ScrollLink
+                to="experience"
+                smooth={true}
+                duration={500}
+                onClick={toggleMenu}
+              >
+                <motion.img
+                  src="/images/user-experience.png"
+                  alt="experience"
+                  className="menu-icon"
+                  whileHover={{ rotate: 360, scale: 1.2 }}
+                  transition={{ duration: 0.5 }}
+                />
+                {content.menu.experience}
+              </ScrollLink>
+            </motion.li>
+            <motion.li
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              <ScrollLink
                 to="achievements"
                 smooth={true}
                 duration={500}
@@ -136,7 +219,7 @@ const LandingPage = () => {
               whileHover={{ scale: 1.1, rotate: 5 }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
+              transition={{ delay: 0.4 }}
             >
               <ScrollLink
                 to="projects"
@@ -260,6 +343,54 @@ const LandingPage = () => {
         </motion.div>
       </section>
 
+      <section id="experience" className="section experience">
+        <motion.div
+          className="content-box"
+          initial={{ x: "-100%", opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2, type: "spring" }}
+          viewport={{ once: true }}
+        >
+          <h2>
+            <img
+              src="/images/achievement.png"
+              alt="experience"
+              className="section-icon"
+            />{" "}
+            {content.experience.section}
+          </h2>
+          <div className="grid-content">
+            {content.experience.items.map((item, index) => (
+              <motion.div
+                key={index}
+                className="grid-item"
+                initial={{
+                  scale: 0.8,
+                  opacity: 0,
+                  x: index % 2 === 0 ? -20 : 20,
+                }}
+                whileInView={{ scale: 1, opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: 0.3 + index * 0.15 }}
+                whileHover={{
+                  y: -10,
+                  rotate: index % 2 === 0 ? 3 : -3,
+                  boxShadow: "8px 8px 0px #1a3c34",
+                }}
+              >
+                <div className="experience-header">
+                  <strong>{item.title}</strong>
+                  <span className="item-company">{item.company}</span>
+                </div>
+                <p className="item-duration">{item.duration}</p>
+                <div className="experience-details-block">
+                  {renderExperienceDescription(item, index)}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
       <section id="achievements" className="section achievements">
         <motion.div
           className="content-box"
@@ -354,7 +485,15 @@ const LandingPage = () => {
                 <strong>
                   {index === 0 ? "🌠" : "⚔️"} {item.title}
                 </strong>
-                <p>{item.description}</p>
+                {Array.isArray(item.description) ? (
+                  <ul className="item-description-list">
+                    {item.description.map((line, idx) => (
+                      <li key={idx}>{line}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>{item.description}</p>
+                )}
                 <motion.a
                   href={item.link}
                   target="_blank"

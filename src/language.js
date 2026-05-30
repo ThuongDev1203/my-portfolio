@@ -4,15 +4,68 @@ const languageData = {
     menu: {
       about: "About",
       achievements: "Achievements",
+      experience: "Experience",
       projects: "Projects",
       contact: "Contact",
     },
     about: {
       title: "Hi, I'm Thuong Cao Nguyen",
-      subtitle: "Fresher Game Developer",
+      subtitle: "Game Designer & Unity Developer",
       section: "About Me",
       description:
-        "I'm a senior Computer Science student at Van Hien University with a passion for game programming. I have strong skills in C# and have participated in multiple game projects. Among them, I have won five awards, including a Gold Prize, a Second Prize, and an Encouragement Prize in game programming, an Encouragement Prize in algorithms, and a Blockchain Incubation Award. I am always striving to learn and develop myself.",
+        "Game Designer and Unity Developer with hands-on experience in designing, prototyping, and implementing mobile game features from concept to production. Skilled in gameplay systems, level design, player progression, balancing, and data-driven iteration. Experienced in developing playable prototypes with Unity to validate game concepts and improve player experience. Strong ability to analyze player behavior, identify design opportunities, and collaborate with cross-functional teams to deliver engaging game experiences. Seeking a Junior Game Designer position where I can contribute both game design and technical development expertise.",
+    },
+    experience: {
+      section: "Experience",
+      readMore: "Read more",
+      hideDetails: "Hide details",
+      items: [
+        {
+          title: "Unity Developer Intern",
+          company: "EBIZWORLD",
+          duration: "11/2024 - 02/2025",
+          description: [
+            "Designed and implemented adaptive enemy AI and dynamic difficulty scaling to keep gameplay engaging.",
+            "Structured level flow and pacing to create balanced progression and clear player goals.",
+            "Contributed game system features and refined player interaction design for smoother controls.",
+            "Collaborated with the team to polish game feel, visuals, and overall user experience.",
+            "Participated in debugging, playtesting, and iterative tuning cycles to improve stability and fun.",
+          ],
+        },
+        {
+          title: "Game Development Bootcamp",
+          company: "Athena Studio",
+          duration: "03/2025 - 06/2025",
+          description: [
+            "Completed intensive Unity & C# training program.",
+            "Built a complete mobile game prototype",
+            "Participated in 48-hour Game Jam.",
+            "Used PlayFab, Firebase, Git, Trello.",
+          ],
+        },
+        {
+          title: "Game Research Assistant - Gameplay (Contractor)",
+          company: "Athena Studio",
+          duration: "04/2025 - 2/2026",
+          description: [
+            "Analyzed top-performing mobile games in Casual & Hybrid-Casual genres.",
+            "Broke down core gameplay loops, retention mechanics, and monetization strategies Identified player behavior patterns and session design trends.",
+            "Delivered actionable insights to support feature design and product decisions Evaluated UX flow, game feel, animation, and VFX impact on player engagement.",
+          ],
+        },
+        {
+          title: "Game Designer - QC (Remote)",
+          company: "NexZap Studio (Startup)",
+          duration: "07/2025 - 12/2025",
+          description: [
+            "Designed and developed multiple mobile game prototypes from concept → playable → iteration.",
+            "Defined core gameplay loops, player goals, and progression systems.",
+            "Balanced gameplay using playtesting feedback to improve engagement and retention.",
+            "Iterated features based on player experience and usability issues.",
+            "Managed full development cycle independently, including system design and implementation.",
+          ],
+        },
+      ],
     },
     achievements: {
       section: "Achievements",
@@ -69,15 +122,70 @@ const languageData = {
     menu: {
       about: "Giới thiệu",
       achievements: "Thành tựu",
+      experience: "Kinh nghiệm",
       projects: "Dự án",
       contact: "Liên hệ",
     },
     about: {
       title: "Xin chào, tôi là Nguyễn Cao Thượng",
-      subtitle: "Lập trình viên Game (Fresher)",
+      subtitle: "Thiết kế Game & Lập trình viên Unity",
       section: "Về tôi",
       description:
-        "Tôi là sinh viên năm cuối chuyên ngành Khoa học máy tính tại trường Đại học Văn Hiến, đam mê lập trình game. Tôi có kỹ năng tốt về C# và đã tham gia nhiều dự án game. Trong số đó, tôi đã giành được 5 giải thưởng như: Giải vàng, giải nhì và giải khuyến khích về lập trình game, giải khuyến khích về thuật toán, giải ươm mầm về blockchain. Tôi luôn nỗ lực học hỏi và phát triển bản thân.",
+        "Game Designer và Unity Developer với kinh nghiệm thực tế trong việc thiết kế, phát triển prototype và triển khai các tính năng game mobile từ ý tưởng đến sản phẩm hoàn thiện. Có kiến thức về thiết kế gameplay, level design, hệ thống tiến trình người chơi, cân bằng game và tối ưu dựa trên dữ liệu. Thành thạo sử dụng Unity để xây dựng prototype nhằm kiểm chứng ý tưởng và nâng cao trải nghiệm người chơi. Có khả năng phân tích hành vi người chơi, tìm kiếm cơ hội cải thiện thiết kế và phối hợp hiệu quả với các bộ phận liên quan để tạo ra sản phẩm hấp dẫn. Mong muốn phát triển ở vị trí Junior Game Designer, nơi có thể kết hợp cả tư duy thiết kế game và kỹ năng lập trình Unity.",
+    },
+    experience: {
+      section: "Kinh nghiệm",
+      readMore: "Xem thêm",
+      hideDetails: "Ẩn chi tiết",
+      items: [
+        {
+          title: "Thực tập Lập trình Unity",
+          company: "EBIZWORLD",
+          duration: "11/2024 - 02/2025",
+          description: [
+            "Thiết kế và triển khai AI kẻ địch thích ứng cùng cơ chế điều chỉnh độ khó động để giữ trải nghiệm chơi game hấp dẫn.",
+            "Cấu trúc luồng level và nhịp độ để tạo tiến trình cân bằng và mục tiêu người chơi rõ ràng.",
+            "Đóng góp vào các tính năng hệ thống game và tinh chỉnh thiết kế tương tác người chơi để điều khiển mượt mà hơn.",
+            "Phối hợp với nhóm để hoàn thiện cảm giác chơi, hình ảnh và trải nghiệm người dùng tổng thể.",
+            "Tham gia gỡ lỗi, playtesting và vòng tối ưu lặp để nâng cao độ ổn định và tính thú vị.",
+          ],
+        },
+        {
+          title: "Bootcamp Phát triển Game",
+          company: "Athena Studio",
+          duration: "03/2025 - 06/2025",
+          description: [
+            "Hoàn thành chương trình đào tạo chuyên sâu về Unity và C#.",
+            "Xây dựng một prototype game mobile hoàn chỉnh.",
+            "Tham gia Game Jam 48 giờ.",
+            "Sử dụng PlayFab, Firebase, Git, Trello.",
+          ],
+        },
+        {
+          title: "Trợ lý Nghiên cứu Game - Gameplay (Hợp đồng)",
+          company: "Athena Studio",
+          duration: "04/2025 - 02/2026",
+          description: [
+            "Phân tích các game mobile hàng đầu ở thể loại Casual & Hybrid-Casual.",
+            "Phân tích vòng chơi cốt lõi, cơ chế giữ chân và chiến lược kiếm tiền.",
+            "Xác định các mẫu hành vi người chơi và xu hướng thiết kế phiên chơi.",
+            "Đưa ra thông tin thực tiễn hỗ trợ thiết kế tính năng và quyết định sản phẩm.",
+            "Đánh giá luồng UX, cảm giác chơi, animation và tác động VFX đến sự gắn kết người chơi.",
+          ],
+        },
+        {
+          title: "Game Designer - QC (Làm việc từ xa)",
+          company: "NexZap Studio (Startup)",
+          duration: "07/2025 - 12/2025",
+          description: [
+            "Thiết kế và phát triển nhiều prototype game mobile từ ý tưởng → playable → lặp.",
+            "Định nghĩa vòng chơi cốt lõi, mục tiêu người chơi và hệ thống tiến trình.",
+            "Cân bằng gameplay dựa trên phản hồi playtest để cải thiện tương tác và giữ chân.",
+            "Lặp tính năng dựa trên trải nghiệm người chơi và các vấn đề sử dụng.",
+            "Quản lý toàn bộ chu trình phát triển độc lập, gồm thiết kế hệ thống và triển khai.",
+          ],
+        },
+      ],
     },
     achievements: {
       section: "Thành tựu",
